@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    /* Estilos generales */
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    /* Asegura que el fondo cubra toda la altura de la ventana */
+    margin: 0;
+    /* Asegura que la cuadrícula empiece desde la esquina */
+
+    /* Fondo gris claro */
+    background-color: #e5e5e5;
+
+    /* Cuadrícula gris visible */
+    background-image:
+        /* Líneas horizontales */
+        repeating-linear-gradient(to bottom,
+            #b5b5b5 0,
+            #b5b5b5 1px,
+            transparent 1px,
+            transparent 20px),
+        /* Líneas verticales */
+        repeating-linear-gradient(to right,
+            #b5b5b5 0,
+            #b5b5b5 1px,
+            transparent 1px,
+            transparent 20px);
+}
+
+@import "tailwindcss";

@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # 1. SERVICIO DE BASE DE DATOS (MYSQL)
+  mysql:
+    image: mysql:8.0
+    container_name: blog-db-container
+    restart: always
+    environment:
+      # Credenciales para el contenedor y Spring Boot
+      MYSQL_ROOT_PASSWORD: root_password_admin
+      MYSQL_DATABASE: db_blog
+      MYSQL_USER: blog
+      MYSQL_PASSWORD: blog
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - "3306:3306" # Acceso opcional para clientes como Workbench
+    networks:
+      - blog-network
+    # Healthcheck: Define cuándo MySQL está listo para conexiones
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "blog", "-pblog"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # 2. SERVICIO DE BACKEND (SPRING BOOT)
+  spring-app:
+    build:
+      context: ./backend # Busca el Dockerfile en la carpeta 'backend'
+    container_name: spring-app-container
+    ports:
+      - "8080:8080" # Mapeo del puerto de la aplicación (Host:Container)
+    environment: {}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - blog-network
+
+  # 3. SERVICIO DE FRONTEND (ANGULAR + NGINX)
+  angular-web:
+    build:
+      context: ./frontend # Busca el Dockerfile en la carpeta 'frontend'
+    container_name: angular-web-container
+    # Mapea el puerto 80 de NGINX al puerto 4200 de tu máquina host
+    ports:
+      - "4200:80"
+    # Dependencia: Espera a que Spring Boot esté levantado para que el proxy funcione
+    depends_on:
+      - spring-app
+    networks:
+      - blog-network
+
+# Definición de volúmenes para persistencia de datos
+volumes:
+  db-data:
+
+# Definición de la red interna
+networks:
+  blog-network:
+    driver: bridge

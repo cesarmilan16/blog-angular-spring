@@ -1,0 +1,36 @@
+<div class="max-w-3xl mx-auto mt-10 p-8 bg-white shadow-xl rounded-sm">
+
+    @if (isLoading) {
+    <div class="text-center text-blue-600 font-medium">Cargando post...</div>
+    }
+
+    @if (post) {
+    <h2 class="text-4xl font-extrabold text-gray-900 mb-4">{{ post.title }}</h2>
+
+    <div class="border-t border-gray-200 pt-4">
+    <p class="w-fit text-sm font-light text-gray-900 bg-gray-200 px-2 mb-4 rounded-xl font-sans">
+        {{ post.category }}
+    </p>
+    </div>
+
+
+    <p class="text-gray-700 whitespace-pre-line">{{ post.content }}</p>
+
+
+    <div class="flex flex-wrap gap-2">
+        @for (tag of getTagsArray(post.tags); track $index) {
+        <p class="w-fit text-xs font-medium text-blue-800 bg-blue-100 px-3 py-0.5 rounded-xl font-sans mt-6">
+            {{ tag }}
+        </p>
+        }
+    </div>
+
+    } @else if (!isLoading) {
+    <div class="text-center text-red-500 font-medium">No se pudo cargar el post. ID: {{ postId }}</div>
+    }
+
+    <button type="button" routerLink="/"
+        class="mt-8 hover:bg-gray-600 cursor-pointer px-3 py-2 rounded-sm hover:text-white transition duration-150">
+        ← Volver al listado de posts
+    </button>
+    </div>
