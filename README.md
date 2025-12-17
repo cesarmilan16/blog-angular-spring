@@ -18,7 +18,6 @@ Este proyecto implementa una aplicación de blog moderna (**CRUD: Crear, Leer, A
 
 ## 📦 Estructura del Proyecto
 
-```text
 /blog-proyecto
 ├── /backend/              # Código fuente de Spring Boot
 │   ├── /src/
