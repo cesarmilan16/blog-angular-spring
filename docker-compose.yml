@@ -15,7 +15,7 @@ services:
     volumes:
       - db-data:/var/lib/mysql
     ports:
-      - "3306:3306" # Acceso opcional para clientes como Workbench
+      - "3307:3306" # Acceso opcional para clientes como Workbench
     networks:
       - blog-network
     # Healthcheck: Define cuándo MySQL está listo para conexiones
@@ -31,7 +31,7 @@ services:
       context: ./backend # Busca el Dockerfile en la carpeta 'backend'
     container_name: spring-app-container
     ports:
-      - "8080:8080" # Mapeo del puerto de la aplicación (Host:Container)
+      - "8084:8080" # Mapeo del puerto de la aplicación (Host:Container)
     environment: {}
     depends_on:
       mysql:
@@ -46,7 +46,7 @@ services:
     container_name: angular-web-container
     # Mapea el puerto 80 de NGINX al puerto 4200 de tu máquina host
     ports:
-      - "4200:80"
+      - "4201:80"
     # Dependencia: Espera a que Spring Boot esté levantado para que el proxy funcione
     depends_on:
       - spring-app
