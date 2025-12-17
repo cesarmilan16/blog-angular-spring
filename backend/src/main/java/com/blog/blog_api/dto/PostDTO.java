@@ -2,8 +2,6 @@ package com.blog.blog_api.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
 
 public class PostDTO {
 
