@@ -28,6 +28,8 @@ Este proyecto implementa una aplicación de blog moderna (**CRUD: Crear, Leer, A
 │   └── Dockerfile
 └── docker-compose.yml     # Orquestación de servicios
 
+---
+
 # ⚙️ Requisitos Previos
 
 - Docker
@@ -43,6 +45,7 @@ Desde la raíz del proyecto:
 
 ```bash
 docker compose up -d --build
+```
 
 ## 2️⃣ Acceso a la Aplicación
 
@@ -59,6 +62,7 @@ Si realizas cambios en la configuración de NGINX (`nginx.conf`) o en las variab
 ```bash
 docker compose build --no-cache angular-web
 docker compose up -d angular-web
+```
 
 ## 4️⃣ Apagar los Contenedores
 
@@ -66,6 +70,7 @@ Para detener y eliminar los contenedores (pero manteniendo los volúmenes de dat
 
 ```bash
 docker compose down
+```
 
 ## 📝 Configuración Clave
 
@@ -78,6 +83,7 @@ El servicio `angular-web` accede al backend usando el nombre de servicio definid
 services:
   spring-app: # <--- Nombre del host interno
     # ...
+```
 
 ### B. Configuración de NGINX (Proxy)
 
@@ -87,12 +93,13 @@ El archivo `frontend/nginx.conf` es crucial para:
 
 ```nginx
 proxy_pass http://spring-app:8080/;
-
+```
 
 - **Enrutamiento SPA:** Permite recargar la página en cualquier ruta de Angular sin obtener un 404.
 
 ```nginx
 try_files $uri $uri/ /index.html;
+```
 
 ## 👨‍💻 Desarrollo Individual
 
@@ -104,6 +111,7 @@ Si prefieres ejecutar los servicios en tu máquina local para una depuración m�
 
 ```bash
 docker compose up -d mysql
+```
 
 ### Backend (Spring Boot)
 
@@ -113,6 +121,7 @@ docker compose up -d mysql
 ```bash
 cd backend
 ./mvnw spring-boot:run
+```
 
 ### Frontend (Angular)
 
@@ -123,5 +132,6 @@ cd backend
 cd frontend
 npm install
 npm start
+```
 
 > **Nota:** El servidor de desarrollo de Angular generalmente usa el puerto 4200 y requerirá que configures un proxy local si usas el prefijo `/api`.
