@@ -15,7 +15,7 @@ services:
     volumes:
       - db-data:/var/lib/mysql
     ports:
-      - "3307:3306" # Acceso opcional para clientes como Workbench
+      - "3308:3306" # Acceso opcional para clientes como Workbench
     networks:
       - blog-network
     # Healthcheck: Define cuándo MySQL está listo para conexiones
