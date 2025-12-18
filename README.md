@@ -148,3 +148,9 @@ npm start
 ```
 
 > **Nota:** El servidor de desarrollo de Angular generalmente usa el puerto 4200 y requerirá que configures un proxy local si usas el prefijo `/api`.
+
+> 💡 **Idea del proyecto**  
+> La idea base de este proyecto está inspirada en el roadmap de backend de **roadmap.sh**, concretamente en el reto **“Blogging Platform API”**:  
+> https://roadmap.sh/projects/blogging-platform-api  
+>  
+> A partir de ese punto, he desarrollado mi propia implementación full-stack, añadiendo frontend en Angular, despliegue con Docker Compose y exposición segura en producción mediante Cloudflare Tunnel.
