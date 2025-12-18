@@ -51,11 +51,22 @@ docker compose up -d --build
 
 ## 2️⃣ Acceso a la Aplicación
 
-| Servicio        | URL                          | Puerto |
-|-----------------|------------------------------|--------|
-| Frontend (Angular) | http://localhost:4201       | 4201   |
-| Backend (API)   | http://localhost:8084/api/posts | 8084   |
-| MySQL           | localhost                    | 3307   |
+### A. Acceso Local (Desarrollo)
+
+| Servicio             | URL                                  | Puerto |
+|----------------------|--------------------------------------|--------|
+| Frontend (Angular)   | http://localhost:4201                | 4201   |
+| Backend (API)        | http://localhost:8084/api/posts      | 8084   |
+| MySQL                | localhost                             | 3307   |
+
+### B. Acceso en Producción (Cloudflare Tunnel)
+
+La aplicación está desplegada y accesible públicamente mediante dominios seguros:
+
+| Servicio             | URL Pública |
+|----------------------|-------------|
+| Frontend (Blog)      | https://blog.cesarmilandev.com |
+| Backend (API)        | https://api-blog.cesarmilandev.com/api/posts |
 
 ## 3️⃣ Solución de Problemas (Cache y Recarga)
 
